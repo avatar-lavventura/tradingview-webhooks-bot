@@ -1,5 +1,4 @@
 import ccxt
-import ast
 
 
 def parse_webhook(webhook_data):
@@ -9,9 +8,9 @@ def parse_webhook(webhook_data):
     :param webhook_data: POST data from tradingview, as a string.
     :return: Dictionary version of string.
     """
-
-    data = ast.literal_eval(webhook_data)
-    return data
+    return webhook_data
+    # data = ast.literal_eval(webhook_data)
+    # return data
 
 
 def calc_price(given_price):
@@ -49,4 +48,3 @@ def send_order(data):
     order = exchange.create_order(data['symbol'], data['type'], data['side'], data['amount'], calc_price(data['price']))
     # This is the last step, the response from the exchange will tell us if it made it and what errors pop up if not.
     print('Exchange Response:', order)
-
